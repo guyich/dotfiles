@@ -1,0 +1,40 @@
+{
+   "author": "Dmitry Nabok",
+   "background": {
+      "page": "/popup/background.html"
+   },
+   "browser_action": {
+      "default_icon": "/icon/icon_48.png",
+      "default_popup": "/popup/index.html",
+      "default_title": "PocketTube: Youtube Subscription Manager"
+   },
+   "content_scripts": [ {
+      "css": [ "context.css" ],
+      "js": [ "/build/app.js", "/purify.min.js" ],
+      "matches": [ "https://*.youtube.com/*" ],
+      "run_at": "document_start"
+   } ],
+   "content_security_policy": "script-src 'self' https://c6.patreon.com; object-src 'self'",
+   "default_locale": "en",
+   "description": "__MSG_description__",
+   "homepage_url": "https://yousub.info/",
+   "icons": {
+      "128": "/icon/icon_128.png",
+      "16": "/icon/icon_16.png",
+      "48": "/icon/icon_48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmwKPcx2Q9miBd4nVarX4b4IEd15P2aCTtPQJayegnfktzU+aPVxlYWXo1L7tWlxgL2o2KYgR78RmmkOe0nIhVud/lURn8KqRkEgeEwwR0RObEWSPUcD6W9e36Gs4l1NUgkRzH4Tgo03WIMnXGTXkmPzgu7tGL+nxplukUdH74mAO6dRJ2dRkXzrEeQJVwFFOvR14R7hKPoY+L0NViPa6UqzGACYAdS1+MkpxjAhVSv+aSFXubhHA53qzMwkfggs6NSOsFIi+Bzqa4Z+6eePoHZCBxWNLEsDwNRAW0yfOhNgIX9FwIF4mMz6TybNZO8tFSyYxjbcJCeJUzutbOpItWQIDAQAB",
+   "manifest_version": 2,
+   "name": "__MSG_name__",
+   "oauth2": {
+      "client_id": "579336474196-vvopcc4b0to7aal97pab6pgpks89qb8b.apps.googleusercontent.com",
+      "scopes": [ "profile", "https://www.googleapis.com/auth/drive.appdata", "https://www.googleapis.com/auth/youtube.readonly" ]
+   },
+   "optional_permissions": [ "bookmarks" ],
+   "options_page": "popup/index.html",
+   "permissions": [ "storage", "unlimitedStorage", "identity" ],
+   "short_name": "YSM",
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "5.2.1",
+   "web_accessible_resources": [ "/build/ut.js", "/purify.min.js", "icon/*" ]
+}

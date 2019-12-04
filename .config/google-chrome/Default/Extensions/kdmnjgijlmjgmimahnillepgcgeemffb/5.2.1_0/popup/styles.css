@@ -1,0 +1,146 @@
+html, body {
+  margin: 0 auto;
+  height: 350px;
+  width: 500px;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  color: white;
+  background: #04355a;
+  font-size: 1.6em;
+  font-weight: bold;
+  line-height: 50px;
+  text-align: center;
+}
+
+.header .tab-button {
+  cursor: pointer;
+  width: 100%;
+}
+
+.header .tab-button.active {
+  background: #497aa0;
+}
+
+.tabcontent {
+  background: #497aa0;
+  height: 300px;
+  line-height: 30px;
+  color: white;
+  font-weight: bold;
+  display: none;
+}
+
+.tabcontent.on {
+  display: block;
+}
+
+.settings-list {
+  padding: 30px 0px 0px 20px;
+  margin: 0 auto;
+  width: 600px;
+  height: 215px;
+}
+
+li {
+  list-style: none;
+  cursor: pointer !important;
+}
+
+.settings-list input, .settings-list label {
+  cursor: pointer !important;
+}
+
+.backup-list{
+  height: 245px;
+}
+
+.help-tip {
+  position: absolute;
+  margin: 0 10px;
+  text-align: center;
+  background-color: #BCDBEA;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.help-tip:before {
+  content: '?';
+  font-weight: bold;
+  color: #fff;
+}
+
+.btn-blue {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: bold;
+  background-color: #427bb8;
+  color: #fff;
+  border-radius: 5px;
+  border: 0;
+  padding: 0;
+  height: 50px;
+  margin-top: 8px;
+  border: 1px solid;
+  outline: none;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
+.btn-blue:hover {
+  background-color: #7c90a5;
+}
+
+.btn-blue.export, .btn-blue.import {
+  width: 200px;
+  margin: 25px;
+  font-size: 1.4em;
+}
+
+.btn-blue.sync{
+  height: 90px;
+  margin: 25px 60px;
+  font-size: 1.4em;
+}
+
+.btn-blue.sync span{
+  line-height: 50px;
+  margin: 25px;
+  font-size: 20px;
+  vertical-align: top;
+}
+
+.btn-blue.sync img{
+  margin: 0 25px;
+}
+
+.hint-export{
+  text-align: center;
+  margin: 38px 0 37px 0;
+}
+
+.donate {
+  float: left;height: 35px;width: 230px;overflow: hidden;margin: 10px;
+}
+
+.donate-link {
+  margin: 40px;
+}
+
+.donate-img {
+  width: 150px;
+  height: 35px;
+}
+
+.export-bookmarks {
+  padding: 0px 0px 0px 35px;
+  margin: 0 auto;
+  cursor: pointer;
+}

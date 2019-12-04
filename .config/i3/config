@@ -1,0 +1,166 @@
+
+# Basic Bindings
+bindsym	$Mod+Return		    exec $term
+bindsym $Mod+Shift+e 		exec prompt "Exit i3" "i3-msg exit"
+bindsym Mod1+q			    [con_id="__focused__" instance="^(?!dropdown|pythonshell|conky-quickview|rangerdropdown).*$"] kill
+bindsym $Mod+Shift+r		exec ~/.config/i3/reload.sh
+bindsym $Mod+d			    exec rofi -show drun -padding 80 -bw 0 -lines 8 -width 100% -location 1 -show-icons 
+bindsym $Mod+Shift+x		exec i3lock-fancy -n -p
+bindsym $Mod+m			    move workspace to output left
+
+# layout
+# bindsym $Mod+s			    layout stacking
+# bindsym $Mod+w			    layout tabbed
+# bindsym	$Mod+e			    layout toggle split
+bindsym $Mod+f			    fullscreen toggle
+bindsym $Mod+v			    split toggle
+bindsym $Mod+space 		    focus mode_toggle
+bindsym $Mod+Shift+space	floating toggle
+
+# change focus
+bindsym $Mod+h 			    focus left
+bindsym $Mod+j			    focus down
+bindsym $Mod+k 			    focus up
+bindsym $Mod+l		 	    focus right
+bindsym $Mod+Left 		    focus left
+bindsym $Mod+Down 		    focus down
+bindsym $Mod+Up 		    focus up
+bindsym $Mod+Right 		    focus right
+
+# move focused window
+bindsym $Mod+Shift+h 		move left
+bindsym $Mod+Shift+j 		move down
+bindsym $Mod+Shift+k 		move up
+bindsym $Mod+Shift+l	 	move right
+bindsym $Mod+Shift+Left 	move left
+bindsym $Mod+Shift+Down 	move down
+bindsym $Mod+Shift+Up 		move up
+bindsym $Mod+Shift+Right 	move right
+
+# floating move with mouse and $Mod
+floating_modifier $Mod
+
+# Media Controls
+bindsym $Mod+F2             exec playerctl play-pause
+bindsym $Mod+F1             exec playerctl previous
+bindsym $Mod+F3             exec playerctl next
+bindsym XF86AudioNext       exec playerctl next
+bindsym XF86AudioPrev       exec playerctl previous
+bindsym XF86AudioPlay       exec playerctl play-pause
+bindsym XF86AudioStop       exec playerctl stop
+
+# Gaps
+bindsym $Mod+Mod1+plus      gaps inner current plus 5
+bindsym $Mod+Mod1+minus     gaps inner current minus 5
+
+bindsym $Mod+plus           gaps outer current plus 5
+bindsym $Mod+minus          gaps outer current minus 5
+
+bindsym $Mod+shift+plus     gaps inner current set 15; gaps outer current set 15
+bindsym $Mod+shift+minus    gaps inner current set 0; gaps outer current set 0
+
+# Volume
+bindsym $Mod+F9                 exec pulsemixer --change-volume -5
+bindsym $Mod+F10                exec pulsemixer --change-volume +5
+bindsym XF86AudioRaiseVolume    exec pulsemixer --change-volume +5
+bindsym XF86AudioLowerVolume    exec pulsemixer --change-volume -5
+bindsym XF86AudioMute           exec pulsemixer --mute
+
+# border & title
+for_window [class="^.*"] border pixel 1, title_format "<b> %class >> %title </b>"
+
+# gaps
+gaps inner 15
+gaps outer 0
+
+# font
+font pango:monospace 8
+
+# mod key used for most binds
+# Mod1 = Alt
+# Mod4 = Super
+set $Mod Mod4
+
+# direction keys
+set $up l
+set $down k
+set $left j
+set $right semicolon
+for_window [class="firefox" instance="Navigator"] float enable
+
+# resize.i3
+mode "resize" {
+    # These bindings trigger as soon as you enter the resize mode
+
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    # back to normal: Enter or Escape or $mod+r
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+# polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# run with reload
+exec_always --no-startup-id xrdb -load ~/.Xresources
+
+# run once
+exec --no-startup-id xfsettingsd
+
+# needed for super to launch rofi through ksuperkey, see ~/.xprofile
+bindsym Mod1+F1 exec --no-startup-id rofi_run -r
+# workspaces.i3
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+assign [class="code-oss"] $ws2
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10

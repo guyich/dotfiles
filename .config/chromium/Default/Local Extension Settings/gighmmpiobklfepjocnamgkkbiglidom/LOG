@@ -1,0 +1,26 @@
+2019/11/15-14:06:32.183 344 Reusing MANIFEST /home/dvda/.config/chromium/Default/Local Extension Settings/gighmmpiobklfepjocnamgkkbiglidom/MANIFEST-000001
+2019/11/15-14:06:32.183 344 Recovering log #68
+2019/11/15-14:06:32.229 344 Reusing old log /home/dvda/.config/chromium/Default/Local Extension Settings/gighmmpiobklfepjocnamgkkbiglidom/000068.log 
+2019/11/15-14:07:49.352 47f Level-0 table #72: started
+2019/11/15-14:07:49.517 47f Level-0 table #72: 4800534 bytes OK
+2019/11/15-14:07:49.541 47f Delete type=0 #68
+2019/11/15-14:07:53.472 47f Level-0 table #74: started
+2019/11/15-14:07:53.677 47f Level-0 table #74: 4800486 bytes OK
+2019/11/15-14:07:53.699 47f Delete type=0 #71
+2019/11/15-14:07:55.618 47f Level-0 table #76: started
+2019/11/15-14:07:55.821 47f Level-0 table #76: 4799303 bytes OK
+2019/11/15-14:07:55.849 47f Delete type=0 #73
+2019/11/15-14:07:55.854 47f Compacting 4@0 + 2@1 files
+2019/11/15-14:07:56.106 47f Generated table #77@0: 1 keys, 4799303 bytes
+2019/11/15-14:07:56.140 47f Generated table #78@0: 5 keys, 442 bytes
+2019/11/15-14:07:56.140 47f Compacted 4@0 + 2@1 files => 4799745 bytes
+2019/11/15-14:07:56.215 47f compacted to: files[ 0 2 1 0 0 0 0 ]
+2019/11/15-14:07:56.215 47f Delete type=2 #76
+2019/11/15-14:07:56.215 47f Delete type=2 #66
+2019/11/15-14:07:56.215 47f Delete type=2 #67
+2019/11/15-14:07:56.215 47f Delete type=2 #72
+2019/11/15-14:07:56.215 47f Delete type=2 #74
+2019/11/15-14:07:56.215 47f Delete type=2 #69
+2019/11/15-14:08:50.291 47f Level-0 table #80: started
+2019/11/15-14:08:50.458 47f Level-0 table #80: 4820860 bytes OK
+2019/11/15-14:08:50.481 47f Delete type=0 #75

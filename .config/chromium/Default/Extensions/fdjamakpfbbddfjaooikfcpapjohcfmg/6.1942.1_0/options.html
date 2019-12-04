@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Dashlane Extension - Options</title>
+    <style>
+      .radioItem { margin-bottom: 1em; }
+      #full_version_info { display: none; }
+      .version_info {
+        color: grey;
+        margin-top: 3em;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="mode_selector_form">
+      <h2>Extension Mode</h2>
+
+      <div class="browser-style">
+        <div class="radioItem">
+            <input type="radio" name="standalone" value="true" id="standalone"> <label for="standalone">Standalone</label>
+        </div>
+        <div class="radioItem">
+            <input type="radio" name="standalone" value="false" id="desktop"> <label for="desktop">Desktop</label>
+        </div>
+      </div>
+
+      <small>
+        <b>Standalone</b>: Can be used without installing the desktop application. On Linux, this is the only mode available.<br>
+        <b>Desktop</b>: Requires the Dashlane application to be installed on your Windows/Mac computer.<br><br>
+      </small>
+
+      <button class="browser-style" type="submit">Save and restart extension</button>
+    </form>
+
+    <pre class="version_info" id="short_version_info"></pre>
+    <pre class="version_info" id="full_version_info"></pre>
+    <script src="options.js"></script>
+  </body>
+</html>

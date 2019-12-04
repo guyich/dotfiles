@@ -1,0 +1,5 @@
+2019/11/15-21:59:45.482 3e63 Reusing MANIFEST /home/dvda/.config/google-chrome/Default/IndexedDB/https_wego.here.com_0.indexeddb.leveldb/MANIFEST-000001
+2019/11/15-21:59:45.751 3ea3 Level-0 table #5: started
+2019/11/15-21:59:45.776 3ea3 Level-0 table #5: 1040 bytes OK
+2019/11/15-21:59:45.827 3ea3 Delete type=0 #3
+2019/11/15-21:59:45.827 3ea3 Manual compaction at level-0 from '\x00\x01\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x02\x00\x00\x00' @ 0 : 0; will stop at (end)

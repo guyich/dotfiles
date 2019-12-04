@@ -1,0 +1,8 @@
+[2019-11-25 22:37:00.982] [sharedprocess] [info] main {"machineId":"8115b725b5524505c93cff4439e1bdd5cfa64a1a39aa71e543ebfdcf9400a657","windowId":2}
+[2019-11-25 22:37:40.986] [sharedprocess] [info] Starting to clean up unused language packs.
+[2019-11-25 22:44:03.310] [sharedprocess] [info] Installing extension: streetsidesoftware.code-spell-checker
+[2019-11-25 22:44:05.729] [sharedprocess] [info] Downloaded extension: streetsidesoftware.code-spell-checker /tmp/be14fe7c-adb7-4db6-bc7b-d778ab9cf22b
+[2019-11-25 22:44:07.266] [sharedprocess] [info] Extracted extension to /home/dvda/.vscode-oss/extensions/.streetsidesoftware.code-spell-checker-1.7.20: streetsidesoftware.code-spell-checker
+[2019-11-25 22:44:07.267] [sharedprocess] [info] Renamed to /home/dvda/.vscode-oss/extensions/streetsidesoftware.code-spell-checker-1.7.20
+[2019-11-25 22:44:07.268] [sharedprocess] [info] Installation completed. streetsidesoftware.code-spell-checker
+[2019-11-25 22:44:07.338] [sharedprocess] [info] Extensions installed successfully: streetsidesoftware.code-spell-checker
