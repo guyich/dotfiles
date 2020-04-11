@@ -18,6 +18,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'pangloss/vim-javascript'
 Plug 'jiangmiao/auto-pairs'
 
+
 " Tools
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug '/usr/local/opt/fzf'
@@ -26,12 +27,14 @@ Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive' 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mzlogin/vim-markdown-toc'
+Plug 'leafgarland/typescript-vim'
 
 Plug 'mattn/emmet-vim' 
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'} 
 Plug 'neoclide/coc.nvim', {'branch': 'release'} 
 
 "Themes
+Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons' 
 Plug 'vim-airline/vim-airline' 
 Plug 'vim-airline/vim-airline-themes' 
@@ -39,12 +42,18 @@ Plug 'vim-airline/vim-airline-themes'
 "All of your Plugins must be added before the following line
 call plug#end()
 
+color gruvbox
+set background=dark
+set cursorline
+
 """""""""""""""""""""""""""""""""""""""
 " General Settings, Keyboard Shortcuts 
 """""""""""""""""""""""""""""""""""""""
 set backup "create backup
 set backupdir=~/Documents/vimbackup "where to store backup files
 set dir=~/Documents/vimbackup "where to store swap files
+
+nnoremap <C-r> :source ~/.vimrc<Cr>
 
 set timeoutlen=1000
 set ttimeoutlen=0
