@@ -16,19 +16,20 @@ call plug#begin('~/.vim/plugged')
 
 " syntax highlighting
 Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'styled-components/vim-styled-components', {'branch': 'main'}
 Plug 'jiangmiao/auto-pairs'
-
+Plug 'fatih/vim-go'
 
 " Tools
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive' 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mzlogin/vim-markdown-toc'
-Plug 'leafgarland/typescript-vim'
-
 Plug 'mattn/emmet-vim' 
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'} 
 Plug 'neoclide/coc.nvim', {'branch': 'release'} 
@@ -42,21 +43,35 @@ Plug 'vim-airline/vim-airline-themes'
 "All of your Plugins must be added before the following line
 call plug#end()
 
-color gruvbox
+""""""""""""""""""""""""""""""""""""""
+" Theme
+""""""""""""""""""""""""""""""""""""""
+set t_ut=
+syntax enable
 set background=dark
+let g:gruvbox_contrast_dark = 'soft'
+let g:gruvbox_italic=0
+colorscheme gruvbox
 set cursorline
 
 """""""""""""""""""""""""""""""""""""""
 " General Settings, Keyboard Shortcuts 
 """""""""""""""""""""""""""""""""""""""
 set backup "create backup
+set backupcopy=yes
 set backupdir=~/Documents/vimbackup "where to store backup files
 set dir=~/Documents/vimbackup "where to store swap files
+
+"for windows terminal
+vmap <C-c> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe <CR><CR>
+" paste from buffer
+map <C-v> :r ~/.vimbuffer<CR>
 
 nnoremap <C-r> :source ~/.vimrc<Cr>
 
 set timeoutlen=1000
 set ttimeoutlen=0
+set lazyredraw
 set ttyfast
 set tw=500
 
@@ -68,29 +83,14 @@ set listchars=tab:⋅\ ,trail:⋅
 nnoremap ss :w<cr> 
 "remap Ctrl-p for finding files run Fzf :Files command
 nnoremap <C-p> :Files<Cr>
-
-" Prettier
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
-
+"Go maps
+:nnoremap <C-g> :GoRun<cr>
 """"""""""""""""""""""""""""""""""""""
 " NERDTree
 """"""""""""""""""""""""""""""""""""""""
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeQuitOpen = 1 "Closes NerdTree when opening a file
-""""""""""""""""""""""""""""""""""""""""
-"Completion
-""""""""""""""""""""""""""""""""""""""""
-" use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
 
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
 """"""""""""""""""""""""""""""""""""""""""
 "Text, tab, indent
 """"""""""""""""""""""""""""""""""""""""""
@@ -121,16 +121,24 @@ let g:prettier#autoformat = 0
 " Prettier default: true
 let g:prettier#config#bracket_spacing = 'true'
 
+" single quotes
+let g:prettier#config#single_quote = 'true'
+
 " runs prettier on file formats
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+
+""""""""""""""""""""""""""""""""""""""""""""
+" COC
+""""""""""""""""""""""""""""""""""""""""""""
+let g:coc_global_extensions = [
+  \ 'coc-tsserver'
+  \ ]
+
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " Intellisense
 " if hidden is not set, TextEdit might fail.
 set hidden
-
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
 
 " Better display for messages
 set cmdheight=2
