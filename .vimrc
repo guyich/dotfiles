@@ -69,6 +69,8 @@ map <C-v> :r ~/.vimbuffer<CR>
 
 nnoremap <C-r> :source ~/.vimrc<Cr>
 
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
 set timeoutlen=1000
 set ttimeoutlen=0
 set lazyredraw
@@ -80,9 +82,17 @@ set listchars=tab:⋅\ ,trail:⋅
 
 "map jk to esc
 :imap jk <Esc> 
-nnoremap ss :w<cr> 
+noremap ss :w<cr> 
 "remap Ctrl-p for finding files run Fzf :Files command
 nnoremap <C-p> :Files<Cr>
+"tabs
+noremap <C-t><up> :tabr<cr>
+noremap <C-t><down> :tabl<cr>
+noremap <C-t><left> :tabp<cr>
+noremap <C-t><right> :tabn<cr>
+
+
+
 "Go maps
 :nnoremap <C-g> :GoRun<cr>
 """"""""""""""""""""""""""""""""""""""
@@ -135,6 +145,7 @@ let g:coc_global_extensions = [
   \ ]
 
 autocmd FileType json syntax match Comment +\/\/.\+$+
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Intellisense
 " if hidden is not set, TextEdit might fail.
