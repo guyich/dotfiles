@@ -1,19 +1,28 @@
 set nocompatible
+set scrolloff=10 "number of context lines you would like to see above and below the cursor
+set number
+set rnu "[number]G jump to absolute line number
+
 filetype off
 filetype indent on
 set exrc
 set encoding=utf-8
 set laststatus=2
 set t_Co=256
+""""""""""""""""""""""""""""""""""""""""""
+"Text, tab, indent
+""""""""""""""""""""""""""""""""""""""""""
+set shiftwidth=2
+set tabstop=4
+set softtabstop=4
+set expandtab
+set smartindent
 
-
-" Auto install Plug https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
+set wrap
+set linebreak
+set visualbell
+set t_vb=
+set title titlestring=
 
 call plug#begin('~/.vim/plugged')
 
@@ -30,16 +39,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mzlogin/vim-markdown-toc'
 "Plug 'mattn/emmet-vim' 
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'} 
 Plug 'fatih/vim-go'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'mnick/vim-pomodoro'
 
 "Themes
-Plug 'morhetz/gruvbox'
-Plug 'ryanoasis/vim-devicons' 
-Plug 'vim-airline/vim-airline' 
-Plug 'vim-airline/vim-airline-themes' 
+Plug 'gruvbox-community/gruvbox'
 
 "All of your Plugins must be added before the following line
 call plug#end()
@@ -50,13 +55,8 @@ call plug#end()
 set t_ut=
 syntax enable
 set background=dark
-let g:gruvbox_contrast_dark='soft'
-let g:gruvbox_bold=1
-let g:gruvbox_italic=1
 colorscheme gruvbox
 set cursorline
-" air-line
-let g:airline_powerline_fonts = 1
 
 """""""""""""""""""""""""""""""""""""""
 " General Settings, Keyboard Shortcuts 
@@ -71,13 +71,10 @@ set nowritebackup
 set backupdir=~/Documents/vimbackup "where to store backup files
 set dir=~/Documents/vimbackup "where to store swap files
 
-"for windows terminal
+"For Windows Terminal
 vmap <C-c> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe <CR><CR>
 " paste from buffer
 map <C-v> :r ~/.vimbuffer<CR>
-nnoremap q <C-v>
-
-nnoremap <C-r> :source ~/.vimrc<Cr>
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
@@ -90,10 +87,24 @@ set tw=500
 set list
 set listchars=tab:⋅\ ,trail:⋅
 
-:imap jk <ESC>
-noremap ss :w<cr>
-"remap Ctrl-p for finding files run Fzf :Files command
-nnoremap <C-p> :Files<Cr>
+"""""""""""""""""""""""""""""""""""""""
+" Remaps
+"""""""""""""""""""""""""""""""""""""""
+
+let mapleader = " "
+
+"remap Ctrl-p for finding files run Fzf :GFiles command
+nnoremap <C-p> :GFiles<Cr> 
+nnoremap <leader>pf :Files<CR>
+
+" Source vimrc
+nnoremap <leader><CR> :so ~/.vimrc<CR>
+
+" Split verticaly
+nnoremap <leader>sv :sv
+" Split horizontaly
+nnoremap <leader>sp :sp
+
 "tabs
 nnoremap th  :tabfirst<CR>
 nnoremap tk  :tabnext<CR>
@@ -104,34 +115,10 @@ nnoremap tn  :tabnext<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
 
-"Go maps
-:nnoremap <C-g> :GoRun<cr>
-""""""""""""""""""""""""""""""""""""""
-" NERDTree
-""""""""""""""""""""""""""""""""""""""""
-map <C-n> :NERDTreeToggle<CR>
-let NERDTreeQuitOpen = 1 "Closes NerdTree when opening a file
-
-""""""""""""""""""""""""""""""""""""""""""
-"Text, tab, indent
-""""""""""""""""""""""""""""""""""""""""""
-set shiftwidth=2
-set tabstop=4
-set softtabstop=0
-set expandtab
-set smarttab
-set autoindent
-set smartindent
-set wrap
-set linebreak
-set number
-set visualbell
-set t_vb=
-set title titlestring=
-set relativenumber
-set rnu
-
-
+"""""""""""""""""""""""""""""""""""""""
+" Go remaps
+"""""""""""""""""""""""""""""""""""""""
+nnoremap <C-g> :GoRun<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""
 " COC
@@ -146,15 +133,11 @@ autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeIm
 " Intellisense
 " if hidden is not set, TextEdit might fail.
 set hidden
-
 " Better display for messages
 set cmdheight=2
-
 set updatetime=300
-
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
-
 " always show signcolumns
 set signcolumn=yes
 
