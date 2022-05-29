@@ -115,6 +115,8 @@ nnoremap tn  :tabnext<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
 
+set makeprg=go\ run\ %
+
 """""""""""""""""""""""""""""""""""""""
 " Go remaps
 """""""""""""""""""""""""""""""""""""""
@@ -128,7 +130,7 @@ let g:coc_global_extensions = [
   \ ]
 
 autocmd FileType json syntax match Comment +\/\/.\+$+
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Intellisense
 " if hidden is not set, TextEdit might fail.
