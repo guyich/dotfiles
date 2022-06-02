@@ -12,7 +12,7 @@ set t_Co=256
 """"""""""""""""""""""""""""""""""""""""""
 "Text, tab, indent
 """"""""""""""""""""""""""""""""""""""""""
-set shiftwidth=2
+set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 set expandtab
@@ -99,6 +99,8 @@ nnoremap <leader>pf :Files<CR>
 
 " Source vimrc
 nnoremap <leader><CR> :so ~/.vimrc<CR>
+" Open vimrc
+nnoremap <leader>ov :e ~/.vimrc<CR>
 
 " Split verticaly
 nnoremap <leader>sv :sv
