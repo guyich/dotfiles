@@ -41,13 +41,19 @@ Plug 'mzlogin/vim-markdown-toc'
 "Plug 'mattn/emmet-vim' 
 Plug 'fatih/vim-go'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plug 'mnick/vim-pomodoro'
+Plug 'vimwiki/vimwiki'
+
 
 "Themes
 Plug 'gruvbox-community/gruvbox'
 
 "All of your Plugins must be added before the following line
 call plug#end()
+
+let g:vimwiki_list = [{   'path': '~/Documents/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_listsyms = '✗○◐●✓'
+au FileType vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
+nmap <Leader>d <Plug>VimwikiToggleListItem
 
 """"""""""""""""""""""""""""""""""""""
 " Theme
@@ -86,6 +92,7 @@ set tw=500
 
 set list
 set listchars=tab:⋅\ ,trail:⋅
+
 
 """""""""""""""""""""""""""""""""""""""
 " Remaps
