@@ -2,6 +2,7 @@ set nocompatible
 set scrolloff=10 "number of context lines you would like to see above and below the cursor
 set number
 set rnu "[number]G jump to absolute line number
+set mouse=a
 
 filetype off
 filetype indent on
@@ -29,7 +30,7 @@ call plug#begin('~/.vim/plugged')
 " syntax highlighting
 "Plug 'pangloss/vim-javascript'
 "Plug 'leafgarland/typescript-vim'
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
 
 " Tools
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
@@ -44,6 +45,7 @@ Plug 'mzlogin/vim-markdown-toc'
 Plug 'fatih/vim-go'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'vimwiki/vimwiki'
+Plug 'yuttie/comfortable-motion.vim'
 
 
 "Themes
@@ -66,6 +68,7 @@ set background=dark
 let g:gruvbox_contrast_dark = 'soft'
 colorscheme gruvbox
 set cursorline
+highlight QuickFixLine ctermbg=NONE ctermfg=white cterm=bold guibg=NONE gui=bold
 
 """""""""""""""""""""""""""""""""""""""
 " General Settings, Keyboard Shortcuts 
@@ -93,9 +96,6 @@ set lazyredraw
 set ttyfast
 set tw=500
 
-set list
-set listchars=tab:⋅\ ,trail:⋅
-
 
 """""""""""""""""""""""""""""""""""""""
 " Remaps
@@ -103,19 +103,20 @@ set listchars=tab:⋅\ ,trail:⋅
 
 let mapleader = " "
 
-"remap Ctrl-p for finding files run Fzf :GFiles command
+" Fzf and Telesope
 nnoremap <C-p> :GFiles<Cr> 
-nnoremap <leader>pf :Files<CR>
-nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>r :Rg<CR>
+nnoremap <leader>pf <cmd>Telescope find_files<CR>
+nnoremap <leader>b <cmd>Telescope buffers<CR>
+nnoremap <leader>gr <cmd>Telescope live_grep<CR>
+nnoremap <leader>th <cmd>Telescope help_tags<CR>
 
 " Source vimrc
-nnoremap <leader><CR> :so ~/.vimrc<CR>
+nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
 " Open vimrc
-nnoremap <leader>ov :e ~/.vimrc<CR>
+nnoremap <leader>ov :e ~/.config/nvim/init.vim<CR>
 
 " Split verticaly
-nnoremap <leader>sv :sv
+nnoremap <leader>vs :vs
 " Split horizontaly
 nnoremap <leader>sp :sp
 
@@ -129,7 +130,15 @@ nnoremap tn  :tabnext<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
 
-set makeprg=make
+"scrolling
+let g:comfortable_motion_scroll_down_key = "j"
+let g:comfortable_motion_scroll_up_key = "k"
+noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
+noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
+nnoremap <silent> <C-d> :call comfortable_motion#flick(200)<CR>
+nnoremap <silent> <C-u> :call comfortable_motion#flick(-200)<CR>
+nnoremap <silent> <C-f> :call comfortable_motion#flick(200)<CR>
+nnoremap <silent> <C-b> :call comfortable_motion#flick(-200)<CR>
 
 """""""""""""""""""""""""""""""""""""""
 " Go remaps
