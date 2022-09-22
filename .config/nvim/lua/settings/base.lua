@@ -1,0 +1,26 @@
+local set = vim.opt
+
+set.backup = false -- disable backup file
+set.clipboard = "unnamedplus" -- system clipboard
+set.scrolloff = 10
+set.sidescrolloff = 10
+set.number = true
+set.rnu = true
+set.tabstop = 4
+set.shiftwidth = 4
+set.softtabstop = 0
+set.expandtab = true
+set.swapfile = false
+set.termguicolors = true
+set.lazyredraw = true
+set.encoding = 'UTF-8'
+set.cursorline = true
+set.hlsearch = false
+set.ignorecase = true
+set.mouse = "a"
+set.smartcase = true
+set.smartindent = true
+set.undofile = true
+set.showcmd = false
+set.signcolumn = "yes"
+set.timeoutlen = 1000
