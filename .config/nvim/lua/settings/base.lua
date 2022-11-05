@@ -2,6 +2,7 @@ local set = vim.opt
 
 set.backup = false -- disable backup file
 set.clipboard = "unnamedplus" -- system clipboard
+--set.textwidth = 80
 set.scrolloff = 10
 set.sidescrolloff = 10
 set.number = true
@@ -22,5 +23,5 @@ set.smartcase = true
 set.smartindent = true
 set.undofile = true
 set.showcmd = false
-set.signcolumn = "yes"
+set.signcolumn = "no"
 set.timeoutlen = 1000

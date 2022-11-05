@@ -81,17 +81,19 @@ local function lsp()
   local hints = ""
   local info = ""
 
+local signs = { Error = "", Warn = "", Hint = "", Info = "" }
   if count["errors"] ~= 0 then
-    errors = " %#LspDiagnosticsSignError#e000" .. count["errors"]
+    errors = " %#LspDiagnosticsSignError# " .. count["errors"]
   end
   if count["warnings"] ~= 0 then
     warnings = " %#LspDiagnosticsSignWarning# " .. count["warnings"]
   end
   if count["hints"] ~= 0 then
     hints = " %#LspDiagnosticsSignHint# " .. count["hints"]
+    
   end
   if count["info"] ~= 0 then
-    info = " %#LspDiagnosticsSignInformation# " .. count["info"]
+    info = " %#LspDiagnosticsSignInformation# " .. count["info"]
   end
 
   return errors .. warnings .. hints .. info .. "%#Normal#"

@@ -1,10 +1,33 @@
 require("settings")
 
-vim.g.gruvbox_material_background = "medium" -- hard, soft, medium
-vim.g.gruvbox_material_palette = "original" -- original, mix, material
-vim.g.gruvbox_material_enable_italic = 1
-vim.g.gruvbox_material_sign_column_background = 'none'
-vim.cmd 'color gruvbox-material'
+require("nvim-treesitter.configs").setup {
+    ensure_installed = { "go", "markdown" },
+     -- Automatically install missing parsers when entering buffer
+    auto_install = true,
+    highlight = {        
+        enable = true,
+        additional_vim_regex_highlighting = true,
+    },
+}
+
+require("gruvbox").setup({
+      undercurl = true,
+      underline = true,
+      bold = true,
+      italic = false,
+      strikethrough = true,
+      invert_selection = false,
+      invert_signs = false,
+      invert_tabline = false,
+      invert_intend_guides = false,
+      inverse = true, -- invert background for search, diffs, statuslines and errors
+      contrast = "soft", -- can be "hard", "soft" or empty string
+      palette_overrides = {},
+      overrides = {},
+      dim_inactive = false,
+      transparent_mode = true,
+})
+vim.cmd([[colorscheme gruvbox]])
 
 require('mason').setup({
     ui = {
@@ -16,7 +39,26 @@ require('mason').setup({
     }
 })
 
-require('neoscroll').setup()
+require('neoscroll').setup({
+    -- All these keys will be mapped to their corresponding default scrolling animation
+    mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
+                '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
+    hide_cursor = true,          -- Hide cursor while scrolling
+    stop_eof = true,             -- Stop at <EOF> when scrolling downwards
+    respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+    cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+    easing_function = nil,       -- Default easing function
+    pre_hook = nil,              -- Function to run before the scrolling animation starts
+    post_hook = nil,             -- Function to run after the scrolling animation ends
+    performance_mode = false,    -- Disable "Performance Mode" on all buffers.
+})
+local t = {}
+-- Syntax: t[keys] = {function, {function arguments}}
+-- t['gg']    = {'scroll', {'-2*vim.api.nvim_buf_line_count(0)', 'true', '1', '5', e}}
+-- t['G']     = {'scroll', {'2*vim.api.nvim_buf_line_count(0)', 'true', '1', '5', e}}
+-- require('neoscroll.config').set_mappings(t)
+
+require('true-zen').setup()
 
 local nvim_lsp = require('lspconfig')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -42,34 +84,32 @@ vim.keymap.set('n', '<space>m', ':lua vim.lsp.buf.rename()<CR>', {noremap = true
 vim.keymap.set('n', '<space>r', ':lua vim.lsp.buf.references()<CR>', {noremap = true, silent = true})
 vim.keymap.set('n', '<space>s', ':lua vim.lsp.buf.document_symbol()<CR>', {noremap = true, silent = true})
 
+require('go').setup()
+require('which-key').setup()
+
 return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
     use 'tpope/vim-fugitive'
     -- lsp --
+    use 'hrsh7th/nvim-cmp'
     use { "williamboman/mason.nvim" }
     use { 'neovim/nvim-lspconfig' }
     use { 'onsails/lspkind-nvim' }
     -- stuff --
     use { 'nvim-treesitter/nvim-treesitter'}
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        requires = { {'nvim-lua/plenary.nvim'} }
-    }
-    use({
-        "Pocco81/true-zen.nvim",
-        config = function()
-             require("true-zen").setup {
-                -- your config goes here
-                -- or just leave it empty :)
-             }
-        end,
-    })
+    use { 'nvim-telescope/telescope.nvim', tag = '0.1.0',
+        requires = { {'nvim-lua/plenary.nvim'}}}
+    use{'Pocco81/true-zen.nvim'}
     use 'ray-x/go.nvim'
+    use 'godlygeek/tabular'
+    use 'preservim/vim-markdown'
+    use { 'epwalsh/obsidian.nvim', tag = 'v1.*' }
     -- ui --
+    use 'p00f/nvim-ts-rainbow'
+    use 'nvim-tree/nvim-web-devicons'
     use { 'nvim-lualine/lualine.nvim'}
-    use { 'sainnhe/gruvbox-material' }
+    use { "ellisonleao/gruvbox.nvim" }
     use 'karb94/neoscroll.nvim'
-    use 'kyazdani42/nvim-web-devicons'
-    use 'ryanoasis/vim-devicons'
+    use 'folke/which-key.nvim'
 end)
 

@@ -11,6 +11,7 @@ keymap('n', '<leader>/', ':noh<CR>',{noremap = true}) -- stops search highlighti
 keymap('n', '<leader>w', ':w<CR>',{noremap = true}) -- save
 keymap('n', '<leader>q', ':q<CR>',{noremap = true}) -- quit
 keymap('i', 'jk', '<ESC>', opts)
+keymap({'v', 'c',}, '<leader>[', '<ESC>', opts)
 
 keymap('n', '<leader><CR>', ':so %<CR>',{noremap = true}) -- source conf file
 keymap('n', '<leader>ev', ':vsplit ~/.config/nvim/lua/settings/keymaps.lua<CR>',{noremap = true})
@@ -27,6 +28,9 @@ keymap('n', '<C-h>', '<C-w>h', opts)
 keymap('n', '<C-j>', '<C-w>j', opts)
 keymap('n', '<C-k>', '<C-w>k', opts)
 keymap('n', '<C-l>', '<C-w>l', opts)
+
+-- rotate windows
+keymap('n', '<C-r>', '<C-w>R', opts)
 
 -- move line up/down
 keymap('n', '<leader>j', 'ddp', opts)
