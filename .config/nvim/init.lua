@@ -27,6 +27,7 @@ require("gruvbox").setup({
       dim_inactive = false,
       transparent_mode = true,
 })
+
 vim.cmd([[colorscheme gruvbox]])
 
 require('mason').setup({
@@ -52,11 +53,23 @@ require('neoscroll').setup({
     post_hook = nil,             -- Function to run after the scrolling animation ends
     performance_mode = false,    -- Disable "Performance Mode" on all buffers.
 })
-local t = {}
+-- local t = {}
 -- Syntax: t[keys] = {function, {function arguments}}
 -- t['gg']    = {'scroll', {'-2*vim.api.nvim_buf_line_count(0)', 'true', '1', '5', e}}
 -- t['G']     = {'scroll', {'2*vim.api.nvim_buf_line_count(0)', 'true', '1', '5', e}}
 -- require('neoscroll.config').set_mappings(t)
+
+
+require("go").setup()
+-- Run gofmt + goimport on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+   require('go.format').goimport()
+  end,
+  group = format_sync_grp,
+})
+
 
 require('true-zen').setup()
 
