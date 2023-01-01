@@ -1,3 +1,3 @@
 require("settings.base")
 require("settings.keymaps")
-require("settings.statusline")
+-- require("settings.statusline")
