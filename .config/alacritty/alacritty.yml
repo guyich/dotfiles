@@ -61,7 +61,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background and no title bar buttons
-  #decorations: full
+  decorations: none
 
   # Background opacity
   #
@@ -120,7 +120,7 @@ font:
     family: Ubuntu Mono
 
     # The `style` can be specified to pick a specific face.
-    style: Medium
+    style: Regular 
 
   # Bold font face
   bold:
@@ -163,7 +163,7 @@ font:
   # spacing.
   offset:
    x: 0
-   y: 6
+   y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the

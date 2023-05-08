@@ -4,7 +4,7 @@
 vim.o.backup = false -- disable backup file
 vim.o.clipboard = "unnamedplus" -- system clipboard
 --vim.o.textwidth = 80
-vim.o.scrolloff = 10
+vim.o.scrolloff = 50
 vim.o.sidescrolloff = 10
 vim.o.number = true
 vim.o.rnu = true

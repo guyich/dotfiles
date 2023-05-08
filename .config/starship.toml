@@ -1,0 +1,68 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+
+format = '$username$directory$character$all'
+
+[character]
+success_symbol = '[➜ ](bold green)'
+error_symbol = '[✗ ](bold red)'
+
+[username]
+style_user = 'gray bold'
+style_root = 'red bold'
+format = '[$user]($style) '
+disabled = true
+show_always = true 
+
+[directory]
+read_only = " "
+truncation_length = 10
+truncate_to_repo = true
+style = "bold blue"
+
+[cmd_duration]
+disabled = true
+
+[aws]
+symbol = "  "
+
+[c]
+symbol = " "
+
+[docker_context]
+symbol = " "
+
+[git_branch]
+symbol = "  "
+
+[hg_branch]
+symbol = "  "
+
+[golang]
+symbol = "  "
+
+[lua]
+symbol = "  "
+
+[memory_usage]
+symbol = " "
+
+[meson]
+symbol = "喝 "
+
+[nodejs]
+symbol = " "
+
+[package]
+symbol = " "
+
+[python]
+symbol = " "
+pyenv_version_name = false
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
