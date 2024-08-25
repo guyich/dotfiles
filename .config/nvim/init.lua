@@ -65,4 +65,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- vim.diagnostic.config({virtual_text = false})
 
 lspconfig.gopls.setup({})
-lspconfig.clangd.setup({})
+lspconfig.clangd.setup({
+  name = 'clangd',
+  cmd = {'clangd', '--background-index', '--clang-tidy', '--log=verbose'}
+})
+require("clangd_extensions").setup({})
+
+if vim.g.neovide then
+    vim.o.guifont = "Ubuntu Mono:h16"
+    vim.g.neovide_cursor_animation_length = 0
+end
