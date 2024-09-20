@@ -12,7 +12,7 @@ vim.o.completeopt = 'menuone,noselect'
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -31,6 +31,7 @@ keymap({'v', 'c',}, '<leader>[', '<ESC>', opts)
 keymap('n', '<leader><CR>', ':so %<CR>',{noremap = true}) -- source conf file
 keymap('n', '<leader>ev', ':vsplit ~/.config/nvim/lua/settings/keymaps.lua<CR>',{noremap = true})
 keymap('n', '<leader>tt', function() require("trouble").toggle("workspace_diagnostics") end)
+keymap('n', '<leader>b', ':Compile bash build.sh<CR>', {noremap = true})
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
