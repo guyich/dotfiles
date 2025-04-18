@@ -24,7 +24,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 keymap('n', '<leader>/', ':noh<CR>',{noremap = true}) -- stops search highlighting
 keymap('n', '<leader>w', ':w<CR>',{noremap = true}) -- save
-keymap('n', '<leader>q', ':bd<CR>',{noremap = true}) -- quit
+keymap('n', '<leader>q', ':q<CR>',{noremap = true}) -- quit
 keymap('i', 'jk', '<ESC>', opts)
 keymap({'v', 'c',}, '<leader>[', '<ESC>', opts)
 

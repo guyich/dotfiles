@@ -9,7 +9,6 @@ vim.o.clipboard = "unnamedplus" -- system clipboard
 --vim.o.textwidth = 80
 vim.o.scrolloff = 50
 vim.o.sidescrolloff = 10
-
 vim.o.number = false
 vim.o.rnu = false
 vim.o.tabstop = 4
