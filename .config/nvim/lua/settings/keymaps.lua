@@ -78,4 +78,4 @@ keymap('v', '<', '<gv', opts)
 keymap('v', '>', '>gv', opts)
 
 -- make 
-keymap('n', '<F5>', ':!make<CR>',{noremap = true})
+keymap('n', '<F5>', ':Compile make<CR>',{noremap = true})

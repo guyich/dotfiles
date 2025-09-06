@@ -1,0 +1,162 @@
+#+title: My Emacs Configuration
+
+This is my literate Emacs configuration.
+
+* 1. Core: Package Management (use-package)
+
+We need a package manager. `package.el` is built-in, but `use-package` provides a declarative syntax for using it, which is much cleaner. This code will automatically install `use-package` if it's not already present.
+
+#+begin_src emacs-lisp
+;; Initialize package sources
+(require 'package)
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;; Install use-package if not already installed
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+(require 'use-package)
+(setq use-package-always-ensure t)
+#+end_src
+
+
+* 2. UI: General Tweaks and Appearance
+
+This section handles the general look and feel of Emacs.
+
+** Disable startup screen, tool bar, menu bar, etc.
+#+begin_src emacs-lisp :tangle yes
+(setq inhibit-startup-screen t)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+#+end_src
+
+** Sensible Defaults
+#+begin_src emacs-lisp :tangle yes
+(setq-default indent-tabs-mode nil) ;; Use spaces, not tabs
+(setq-default tab-width 4)
+(setq sentence-end-double-space nil) ;; Use single spaces after periods
+(global-display-line-numbers-mode 1) ;; Show line numbers
+(setq make-backup-files nil) ;; Stop littering files with ~
+(setq column-number-mode t)
+(global-auto-revert-mode t) ;; Reload files when they change on disk
+#+end_src
+
+** Theme
+The Modus themes are fantastic for accessibility and clarity.
+#+begin_src emacs-lisp :tangle yes
+(use-package modus-themes
+  :init
+  (load-theme 'modus-operandi t)) ; Or modus-vivendi for a dark theme
+#+end_src
+
+** Completion Framework (Vertico, Marginalia, Orderless)
+This is the modern, minimal stack for finding files, commands, etc.
+#+begin_src emacs-lisp :tangle yes
+(use-package vertico
+  :init
+  (vertico-mode))
+
+(use-package marginalia
+  :after vertico
+  :init
+  (marginalia-mode))
+
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless basic)
+        completion-category-overrides '((file (styles basic partial-completion)))))
+#+end_src emacs-lisp :tangle yes
+
+* 3. Programming: The Core Experience
+
+** LSP Support with Eglot (built-in)
+Eglot is the minimal, built-in LSP client. It will automatically detect language servers you've installed on your system (like `pylsp`, `gopls`, `rust-analyzer`, etc.).
+#+begin_src emacs-lisp :tangle yes
+(use-package eglot
+  :ensure nil ; It's built-in
+  :hook (prog-mode . eglot-ensure))
+#+end_src
+
+** Auto-completion UI with Corfu
+Corfu provides the pop-up for completions provided by Eglot.
+#+begin_src emacs-lisp :tangle yes
+(use-package corfu
+  :init
+  (global-corfu-mode)
+  ;; Optional: Set a delay for the popup
+  (setq corfu-auto-delay 0.2
+        corfu-auto t))
+#+end_src
+
+** Git Integration with Magit
+The best Git client. Period.
+#+begin_src emacs-lisp :tangle yes
+(use-package magit)
+#+end_src
+
+* 4. How to Grow
+
+This configuration is intentionally minimal. As you program, you might want to add language-specific packages. For example, for Python, you might add:
+
+#+begin_src emacs-lisp :tangle no
+;; Example for Python, don't tangle this yet
+(use-package python-mode
+  :ensure nil ; built-in usually
+  :hook (python-mode . (lambda ()
+                         (setq tab-width 4))))
+#+end_src
+
+* 5. Markdown Mode
+
+#+begin_src emacs-lisp :tangle yes
+(use-package markdown-mode
+  :ensure t
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "multimarkdown")
+  :bind (:map markdown-mode-map
+         ("C-c C-e" . markdown-do)))
+#+end_src
+
+* XX. Misc
+treesit init
+#+begin_src emacs-lisp :tangle yes
+(setq treesit-language-source-alist
+ '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+   (cmake "https://github.com/uyha/tree-sitter-cmake")
+   (css "https://github.com/tree-sitter/tree-sitter-css")
+   (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+   (go "https://github.com/tree-sitter/tree-sitter-go")
+   (gomod "https://github.com/camdencheek/tree-sitter-go-mod")
+   (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")
+   (html "https://github.com/tree-sitter/tree-sitter-html")
+   (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+   (json "https://github.com/tree-sitter/tree-sitter-json")
+   (make "https://github.com/alemuller/tree-sitter-make")
+   (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+   (python "https://github.com/tree-sitter/tree-sitter-python")
+   (toml "https://github.com/tree-sitter/tree-sitter-toml")
+   (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+   (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+   (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+#+end_src
+
+#+begin_src emacs-lisp :tangle yes
+;; Tell Emacs where to find custom theme files
+(add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
+#+end_src
+
+#+begin_src emacs-list :tangle yes
+(use-package org
+  :pin gnu)
+#+end_src
+
+#+begin_src emacs-lisp
+
+#+end_src
+You can add new sections for languages as you need them.
