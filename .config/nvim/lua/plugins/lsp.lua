@@ -9,7 +9,7 @@ return {
             'williamboman/mason-lspconfig.nvim',
         },
         config = function()
-            local lspconfig = require "lspconfig"
+            local lspconfig = vim.lsp.config 
 
             vim.diagnostic.config({
                 virtual_text = false,
@@ -19,12 +19,11 @@ return {
             })
 
             require("mason").setup()
-            require("mason-lspconfig").setup {
-                ensure_installed = { "ts_ls" },
-                automatic_installation = true,
-            }
+            local mason_lspconfig = require("mason-lspconfig")
+            mason_lspconfig.setup()
+
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
-            require('mason-lspconfig').setup_handlers {
+            mason_lspconfig.setup {
                 function(server_name)
                     lspconfig[server_name].setup {
                         on_attach = on_attach,

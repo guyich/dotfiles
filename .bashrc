@@ -8,12 +8,12 @@ esac
 export OSH=/home/praskozorje/.oh-my-bash
 
 # PATH
-export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
+export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
-OSH_THEME="praskozorje"
+OSH_THEME="minimal"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -121,4 +121,4 @@ source "$OSH"/oh-my-bash.sh
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
 . "$HOME/.cargo/env"
-export PATH=$PATH:/home/praskozorje/.spicetify
+# export PATH=$PATH:/home/praskozorje/.spicetify

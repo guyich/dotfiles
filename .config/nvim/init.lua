@@ -15,8 +15,8 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Setup plugins with lazy.nvim
 require("lazy").setup("plugins")
-local lspconfig = require('lspconfig')
-lspconfig.gopls.setup({})
+
+vim.lsp.enable('gopls')
 
 if vim.g.neovide then
     vim.g.neovide_cursor_trail_size = 0.0
@@ -28,4 +28,5 @@ if vim.g.neovide then
     vim.opt.linespace = 5
 end
 
-vim.cmd.colorscheme("gruber-darker")
+--vim.cmd.colorscheme("gruber-darker")
+--vim.cmd([[colorscheme modus]]) -- modus_operandi, modus_vivendi
