@@ -56,7 +56,7 @@ keymap('n', '<C-h>', '<C-w>h', opts)
 keymap('n', '<C-j>', '<C-w>j', opts)
 keymap('n', '<C-k>', '<C-w>k', opts)
 keymap('n', '<C-l>', '<C-w>l', opts)
-keymap('n', '<leader>v', ':vsplit | lua vim.lsp.buf.definition()<CR>')
+keymap('n', '<leader>v', ':vsplit | lua vim.lsp.buf.definition()<CR>', {desc = 'Open function under the cursor in [v]ertical split'})
 
 -- rotate windows
 keymap('n', '<C-r>', '<C-w>R', opts)
@@ -79,3 +79,7 @@ keymap('v', '>', '>gv', opts)
 
 -- make 
 keymap('n', '<F5>', ':Compile make<CR>',{noremap = true})
+
+-- rename
+
+keymap('n', '<F2>', ':lua vim.lsp.buf.rename()<CR>',{noremap = true})

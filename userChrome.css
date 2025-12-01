@@ -1,0 +1,108 @@
+#main-window[sizemode="normal"] > body {
+    flex-direction: column-reverse !important;
+}
+
+/* ========================================================= */
+/* 1. MOVE TOOLBAR TO BOTTOM OF SCREEN                      */
+/* ========================================================= */
+
+#main-window[sizemode="normal"] > body {
+    flex-direction: column-reverse !important;
+}
+
+#navigator-toolbox {
+    z-index: 10 !important;
+    border-top: 1px solid var(--chrome-content-separator-color) !important;
+    border-bottom: none !important;
+    
+    /* Enable Flexbox for reordering internal items (Tabs/URL) */
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Fix for Full Screen interaction */
+#navigator-toolbox[inFullscreen] {
+    margin-top: 0 !important;
+}
+
+/* Ensure the Sidebar stays aligned properly */
+#browser {
+    z-index: 0 !important;
+}
+
+/* ========================================================= */
+/* 2. REORDER: URL BAR TOP, TABS BOTTOM (Inside the bar)    */
+/* ========================================================= */
+
+/* Place Address Bar (Nav-bar) at the top of the toolbar */
+#nav-bar {
+    order: 1 !important;
+    border-top: none !important;
+    box-shadow: none !important;
+    padding-top: 4px !important; 
+}
+
+/* Place Tabs (Titlebar) below the Address Bar */
+#titlebar {
+    order: 2 !important;
+}
+
+/* Bookmarks bar (if enabled) stays at the very bottom */
+#PersonalToolbar {
+    order: 3 !important;
+}
+
+/* ========================================================= */
+/* 3. FIX POPUPS (DYNAMIC POSITIONING)                       */
+/* ========================================================= */
+
+/* 1. Allow the popup to overflow outside the toolbar containers */
+#navigator-toolbox, 
+#nav-bar {
+    overflow: visible !important;
+}
+
+/* 2. Ensure the URL bar acts as the anchor point */
+#urlbar {
+    position: relative !important;
+    z-index: 99 !important;
+}
+
+/* 3. Force the popup to sit exactly on TOP of the URL bar */
+.urlbarView {
+    display: none !important; 
+}
+
+#urlbar[open] > .urlbarView {
+    display: flex !important;
+    position: absolute !important;
+    
+    /* "bottom: 100%" aligns the popup's bottom edge with the urlbar's top edge */
+    bottom: 100% !important; 
+    
+    top: auto !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    
+    /* Visuals */
+    box-shadow: 0px -5px 10px rgba(0,0,0,0.2) !important;
+    background: var(--toolbar-bgcolor) !important;
+    border-bottom: 1px solid var(--chrome-content-separator-color) !important;
+}
+
+/* 4. Push standard menus (hamburger, bookmarks) upwards */
+panel[type="arrow"],
+#appMenu-popup {
+    margin-bottom: 0px !important; 
+    margin-top: auto !important;
+}
+
+/* ========================================================= */
+/* 4. HIDE WINDOW CONTROLS (MIN/MAX/CLOSE)                   */
+/* ========================================================= */
+
+.titlebar-buttonbox-container,
+.titlebar-buttonbox {
+    display: none !important;
+}
