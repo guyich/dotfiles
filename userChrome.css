@@ -5,8 +5,7 @@
 /* ========================================================= */
 /* 1. MOVE TOOLBAR TO BOTTOM OF SCREEN                      */
 /* ========================================================= */
-
-#main-window[sizemode="normal"] > body {
+#main-window > body {
     flex-direction: column-reverse !important;
 }
 
@@ -18,9 +17,12 @@
     /* Enable Flexbox for reordering internal items (Tabs/URL) */
     display: flex !important;
     flex-direction: column !important;
+    
+    /* Allow popups to flow outside this container */
+    overflow: visible !important; 
 }
 
-/* Fix for Full Screen interaction */
+/* Fix for Full Screen (F11) interaction */
 #navigator-toolbox[inFullscreen] {
     margin-top: 0 !important;
 }
